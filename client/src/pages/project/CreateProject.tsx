@@ -28,50 +28,54 @@ function CreateProject() {
         className="col-xl-5 col-lg-6 col-md-7 col-sm-10 mt-5"
         noValidate
         onSubmit={handleSubmit(onSubmit)}>
-        <Row className="mb-3">
-          <Form.Label>Imgress the project name: </Form.Label>
-          <Input
-            type="text"
-            placeholder="Ingress the project name."
-            name="nameproject"
-            required
-            register={register}
-          />
-        </Row>
-        <Row className="mb-3">
-          <Form.Label> Ingress the Description of the project</Form.Label>
-          <textarea
-            placeholder="Ingress the Description of the project."
-            {...register('description')}></textarea>
-        </Row>
-        <Row className="mb-3">
-          <Form.Label>Deadline</Form.Label>
-          <Input
-            type="date"
-            name="deadline"
-            value={new Date().toISOString().split('T')[0]}
-            required
-            register={register}
-          />
-        </Row>
-        <Row className="mb-3">
-          <Form.Label>Importance</Form.Label>
-          <Form.Select {...register('importance', { required: true })}>
-            {Object.values(Importance).map((element) => (
-              <option key={element} value={element}>
-                {element}
-              </option>
-            ))}
-          </Form.Select>
-        </Row>
-        <Row className="mb-3 d-flex justify-content-center">
+        {/* <Row className="mb-3"> */}
+        <Form.Label hidden>Enter the name of the project: </Form.Label>
+        <Input
+          type="text"
+          placeholder="Enter the name of the project."
+          name="nameproject"
+          required
+          register={register}
+        />
+        {/* </Row> */}
+        {/* <Row className="mb-3"> */}
+        <Form.Label hidden>
+          Enter the Description of the project (Optional):
+        </Form.Label>
+        <textarea
+          placeholder="Enter the Description of the project."
+          {...register('description')}></textarea>
+        {/* </Row> */}
+        {/* <Row className="mb-3"> */}
+        <Form.Label hidden>Deadline</Form.Label>
+        <Input
+          type="date"
+          name="deadline"
+          value={new Date().toISOString().split('T')[0]}
+          required
+          register={register}
+        />
+        {/* </Row> */}
+        {/* <Row className="mb-3"> */}
+        <Form.Label hidden>Importance</Form.Label>
+        <Form.Select {...register('importance', { required: true })}>
+          {Object.values(Importance).map((element) => (
+            <option key={element} value={element}>
+              {element}
+            </option>
+          ))}
+        </Form.Select>
+        {/* </Row> */}
+        {/* <Row className="mb-3 d-flex justify-content-center"> */}
+        <div className="container-button">
           <Button
             type="submit"
             classname="col-6"
             value="Create"
-            variant="outline-success"
+            variant="outline-light"
           />
-        </Row>
+        </div>
+        {/* </Row> */}
       </Form>
     </div>
   )

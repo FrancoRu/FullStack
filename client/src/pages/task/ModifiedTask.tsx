@@ -41,76 +41,78 @@ function ModifiedTask() {
       <Form
         className="col-xl-5 col-lg-6 col-md-7 col-sm-10 mt-5"
         onSubmit={handleSubmit(onSubmit)}>
-        <Row className="mb-3">
-          <Form.Label className="invisible">
-            Enter the new title of the task (Opcional):
-          </Form.Label>
-          <Input
-            type="text"
-            value={selectTask?.title}
-            placeholder="Enter the new title of the task (Opcional)"
-            name="title"
-            register={register}
-          />
-        </Row>
-        <Row className="mb-3">
-          <Form.Label className="invisible">
-            Enter the new description of the taks (optional):
-          </Form.Label>
-          <textarea
-            defaultValue={selectTask?.description}
-            placeholder="Enter the new description of the taks (optional)"
-            {...register('description')}></textarea>
-        </Row>
-        <Row className="mb-3">
-          <Form.Label className="invisible">
-            Enter the new Deadline of the task (optional):
-          </Form.Label>
-          <Input
-            type="date"
-            name="deadline"
-            register={register}
-            value={
-              selectTask?.deadline
-                ? new Date(selectTask.deadline).toISOString().split('T')[0]
-                : ''
-            }
-          />
-        </Row>
-        <Row className="mb-3">
-          <Form.Label className="invisible">
-            Enter the new importance of the task (optional):
-          </Form.Label>
-          <Form.Select
-            {...register('importance')}
-            defaultValue={selectTask?.Importance}>
-            {Object.values(Importance).map((element) => (
-              <option key={element} value={element}>
-                {element}
-              </option>
-            ))}
-          </Form.Select>
-        </Row>
-        <Row className="mb-3">
-          <Form.Label className="invisible">
-            Enter the new state of the task (optional):
-          </Form.Label>
-          <Form.Select {...register('state')} defaultValue={selectTask?.state}>
-            {Object.values(State).map((element) => (
-              <option key={element} value={element}>
-                {element}
-              </option>
-            ))}
-          </Form.Select>
-        </Row>
-        <Row className="mb-3 d-flex justify-content-center">
+        {/* <Row className="mb-3"> */}
+        <Form.Label hidden>
+          Enter the new title of the task (Opcional):
+        </Form.Label>
+        <Input
+          type="text"
+          value={selectTask?.title}
+          placeholder="Enter the new title of the task (Opcional)"
+          name="title"
+          register={register}
+        />
+        {/* </Row> */}
+        {/* <Row className="mb-3"> */}
+        <Form.Label hidden>
+          Enter the new description of the taks (optional):
+        </Form.Label>
+        <textarea
+          defaultValue={selectTask?.description}
+          placeholder="Enter the new description of the taks (optional)"
+          {...register('description')}></textarea>
+        {/* </Row> */}
+        {/* <Row className="mb-3"> */}
+        <Form.Label hidden>
+          Enter the new Deadline of the task (optional):
+        </Form.Label>
+        <Input
+          type="date"
+          name="deadline"
+          register={register}
+          value={
+            selectTask?.deadline
+              ? new Date(selectTask.deadline).toISOString().split('T')[0]
+              : ''
+          }
+        />
+        {/* // </Row> */}
+        {/* <Row className="mb-3"> */}
+        <Form.Label hidden>
+          Enter the new importance of the task (optional):
+        </Form.Label>
+        <Form.Select
+          {...register('importance')}
+          defaultValue={selectTask?.Importance}>
+          {Object.values(Importance).map((element) => (
+            <option key={element} value={element}>
+              {element}
+            </option>
+          ))}
+        </Form.Select>
+        {/* // </Row> */}
+        {/* <Row className="mb-3"> */}
+        <Form.Label hidden>
+          Enter the new state of the task (optional):
+        </Form.Label>
+        <Form.Select {...register('state')} defaultValue={selectTask?.state}>
+          {Object.values(State).map((element) => (
+            <option key={element} value={element}>
+              {element}
+            </option>
+          ))}
+        </Form.Select>
+        {/* // </Row> */}
+        {/* <Row className="mb-3 d-flex justify-content-center"> */}
+        <div className="container-button">
           <Button
             type="submit"
             classname="col-6"
             value="Modified"
-            variant="outline-success"
+            variant="outline-light"
           />
-        </Row>
+        </div>
+        {/* </Row> */}
       </Form>
     </div>
   )

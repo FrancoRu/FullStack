@@ -45,81 +45,87 @@ const RegisterPage: React.FC = () => {
                 {msg}
               </Alert>
             ))}
-            <Row className="mb-2">
-              <Form.Label className="invisible">
-                Enter your username*:
-              </Form.Label>
-              <Input
-                type="text"
-                name="username"
-                placeholder="Enter your username"
-                required
-                minLength={8}
-                maxLength={25}
-                register={register}
-              />
-              {errors.username && (
-                <Alert variant="danger"> {errors.username.message}</Alert>
-              )}
-            </Row>
-            <Row className="mb-2">
-              <Form.Label className="invisible">Enter your email*:</Form.Label>
-              <Input
-                type="email"
-                name="email"
-                placeholder="Enter your email"
-                required
-                register={register}
-              />
-              {errors.email && (
-                <Alert variant="danger">{errors.email.message}</Alert>
-              )}
-            </Row>
-            <Row className="mb-2">
-              <Form.Label className="invisible">
-                Enter your password*:
-              </Form.Label>
-              <Input
-                type="password"
-                name="password"
-                placeholder="Enter your password"
-                required
-                minLength={6}
-                maxLength={30}
-                register={register}
-              />
-              {errors.password && (
-                <Alert variant="danger">{errors.password.message}</Alert>
-              )}
-            </Row>
-            <Row className="mb-2">
-              <Form.Label className="invisible">Confirm password*:</Form.Label>
-              <Input
-                type="password"
-                name="confirmPassword"
-                placeholder="confirm your password"
-                required
-                minLength={6}
-                maxLength={30}
-                register={register}
-              />
-              {errors.confirmPassword && (
-                <Alert variant="danger">{errors.confirmPassword.message}</Alert>
-              )}
-            </Row>
-            <Row className="mb-3 d-flex justify-content-center">
+            {/* <Row className="mb-2"> */}
+            <Form.Label className="invisible sr-only">
+              Enter your username*:
+            </Form.Label>
+            <Input
+              type="text"
+              name="username"
+              placeholder="Enter your username"
+              required
+              minLength={8}
+              maxLength={25}
+              register={register}
+            />
+            {errors.username && (
+              <Alert variant="danger"> {errors.username.message}</Alert>
+            )}
+            {/* </Row> */}
+            {/* <Row className="mb-2"> */}
+            <Form.Label className="invisible sr-only">
+              Enter your email*:
+            </Form.Label>
+            <Input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+              register={register}
+            />
+            {errors.email && (
+              <Alert variant="danger">{errors.email.message}</Alert>
+            )}
+            {/* </Row> */}
+            {/* <Row className="mb-2"> */}
+            <Form.Label className="invisible sr-only">
+              Enter your password*:
+            </Form.Label>
+            <Input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+              minLength={6}
+              maxLength={30}
+              register={register}
+            />
+            {errors.password && (
+              <Alert variant="danger">{errors.password.message}</Alert>
+            )}
+            {/* </Row> */}
+            {/* <Row className="mb-2"> */}
+            <Form.Label className="invisible sr-only">
+              Confirm password*:
+            </Form.Label>
+            <Input
+              type="password"
+              name="confirmPassword"
+              placeholder="confirm your password"
+              required
+              minLength={6}
+              maxLength={30}
+              register={register}
+            />
+            {errors.confirmPassword && (
+              <Alert variant="danger">{errors.confirmPassword.message}</Alert>
+            )}
+            {/* </Row> */}
+            {/* <Row className="mb-3 d-flex justify-content-center"> */}
+            <div className="container-button">
               <Button
                 type="submit"
                 value="Register"
-                variant="outline-primary"
+                variant="outline-light"
                 classname="col-lg-3 col-md-5 col-sm-7"
               />
-            </Row>
-            <Row>
-              <p className="text-access">
-                Do you actually have an account? <Link to="/login">Log in</Link>
-              </p>
-            </Row>
+            </div>
+            {/* </Row> */}
+            {/* <Row> */}
+            <p className="text-access">
+              Do you actually have an account? <Link to="/login">Log in</Link>
+            </p>
+            {/* </Row> */}
           </Form>
         </div>
       </section>

@@ -42,46 +42,46 @@ const LoginPage: React.FC = () => {
                 {msg}
               </Alert>
             ))}
-            <Row className="mb-3">
-              <Form.Label className="invisible ">Enter your email:</Form.Label>
-              <Input
-                type="email"
-                name="email"
-                placeholder="Enter your email"
-                required
-                register={register}
-              />
-              {errors.email && <p> {errors.email.message}</p>}
-            </Row>
-            <Row className="mb-3">
-              <Form.Label className="invisible ">
-                Enter your password:
-              </Form.Label>
-              <Input
-                type="password"
-                name="password"
-                placeholder="Enter your password"
-                required
-                minLength={6}
-                maxLength={30}
-                register={register}
-              />
-              {errors.password && <p> {errors.password.message}</p>}
-            </Row>
+            {/* <Row className="mb-3"> */}
+            <Form.Label hidden>Enter your email:</Form.Label>
+            <Input
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              required
+              register={register}
+            />
+            {errors.email && <p> {errors.email.message}</p>}
+            {/* </Row> */}
+            {/* <Row className="mb-3"> */}
+            <Form.Label hidden>Enter your password:</Form.Label>
+            <Input
+              type="password"
+              name="password"
+              placeholder="Enter your password"
+              required
+              minLength={6}
+              maxLength={30}
+              register={register}
+            />
+            {errors.password && <p> {errors.password.message}</p>}
+            {/* </Row> */}
 
-            <Row className="mb-3 d-flex justify-content-center">
+            {/* <Row className="mb-3 d-flex justify-content-center"> */}
+            <div className="container-button">
               <Button
                 type="submit"
                 value="Log In"
-                variant="outline-primary"
+                variant="outline-light"
                 classname="col-lg-3 col-md-5 col-sm-7"
               />
-            </Row>
-            <Row>
-              <p className="text-access">
-                You do not have an account? <Link to="/register">Sign up</Link>
-              </p>
-            </Row>
+            </div>
+            {/* </Row> */}
+            {/* <Row> */}
+            <p className="text-access">
+              You do not have an account? <Link to="/register">Sign up</Link>
+            </p>
+            {/* </Row> */}
           </Form>
         </div>
       </section>

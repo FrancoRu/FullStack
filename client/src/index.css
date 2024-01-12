@@ -1,60 +1,12 @@
+@import url('../public/styles/form/form.css');
+@import url('../public/styles/read/boardRead.css');
+
 * {
   color: #ffffff !important;
 }
-form,
-nav,
-footer,
-.accordion-item,
-.offcanvas,
-.text {
-  border: 1px solid black;
-  padding: 20px;
-  border-radius: 1em;
-  box-shadow: 10px 10px 22px -9px rgba(0, 0, 0, 0.52);
-  -webkit-box-shadow: 10px 10px 22px -9px rgba(0, 0, 0, 0.52);
-  -moz-box-shadow: 10px 10px 22px -9px rgba(0, 0, 0, 0.52);
-  backdrop-filter: blur(10px);
-}
-.offcanvas,
-.offcanvas-body,
-.card,
-.accordion,
-.accordion-item,
-.accordion-button,
-.accordion-header,
-.accordion-collapse {
-  background-color: transparent !important;
-  border-radius: 1em;
-  margin: 10px;
-  border: none;
-}
 
-.offcanvas-body {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  justify-content: space-around;
-}
-
-.card {
-  width: 90%;
-  height: 50%;
-}
 nav:hover {
   backdrop-filter: blur(30px);
-}
-
-.form-control,
-.text,
-textarea,
-select {
-  background-color: transparent !important;
-  font-size: large;
-  border-bottom-width: 1px; /* Specify a specific value for the border width */
-  border-top: none !important;
-  border-left: none !important;
-  border-right: none !important;
-  border-color: black !important;
 }
 
 input::placeholder,
@@ -78,20 +30,20 @@ option {
   display: flex !important;
   justify-content: space-around !important;
 }
+
 #root {
+  background-color: black;
   min-height: 100vh;
-  background-image: url('../public/img/foto.svg');
-  background-size: 100% 100%; /* Ancho estático y altura 100% */
-  background-repeat: repeat-y; /* Repetir en el eje Y */
+  background-size: 100% 100%;
+  background-repeat: repeat-y;
   background-position: center center;
-  background-attachment: fixed; /* Fija la imagen de fondo mientras se desplaza */
+  background-attachment: fixed;
 }
 
 .title,
 .row p {
   text-wrap: nowrap;
   text-align: center;
-  /* font-size: x-large; */
   font-weight: bold;
 }
 
@@ -149,15 +101,8 @@ footer div {
 span {
   font-weight: normal;
 }
-@media (max-width: 800px) {
-  .item-project {
-    flex-direction: column !important;
-  }
-  .row {
-    justify-content: left;
-    width: 100%;
-  }
-  p {
-    text-align: left !important;
-  }
+
+button:hover {
+  color: black !important;
+  font-weight: bold !important;
 }

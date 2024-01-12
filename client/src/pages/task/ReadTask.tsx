@@ -30,7 +30,7 @@ const ReadTasks: React.FC<{ id: string }> = ({ id }) => {
           {tasksRead.map((element) => (
             <div
               key={element._id}
-              className="item-project w-100 d-flex column justify-content-between border-bottom">
+              className="item-task w-100 d-flex column justify-content-between">
               <div className="row d-flex flex-wrap col-5">
                 <p>
                   <strong>Title: </strong>
@@ -63,12 +63,13 @@ const ReadTasks: React.FC<{ id: string }> = ({ id }) => {
                   <span>{element.state}</span>
                 </p>
               </div>
-              <div className="row d-flex flex-wrap col-3">
-                <div className="d-flex justify-content-center align-items-center">
-                  <ButtonModifiedTask id={element._id} />
-                </div>
-                <div className="d-flex justify-content-center align-items-center">
-                  <ButtonDeleteTask id={element._id} />
+              <div className="col-3">
+                <div className="dropdown">
+                  <p className="custom-op"></p>
+                  <div className="dropdown-content">
+                    <ButtonModifiedTask id={element._id} />
+                    <ButtonDeleteTask id={element._id} />
+                  </div>
                 </div>
               </div>
             </div>

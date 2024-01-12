@@ -36,58 +36,54 @@ function CreateTask() {
       <Form
         className="col-xl-5 col-lg-6 col-md-7 col-sm-10 mt-5"
         onSubmit={handleSubmit(onSubmit)}>
-        <Row className="mb-3">
-          <Form.Label className="invisible">
-            Enter the title of the task:
-          </Form.Label>
-          <Input
-            type="text"
-            placeholder="Enter the title of the task."
-            name="title"
-            required
-            register={register}
-          />
-        </Row>
-        <Row className="mb-3">
-          <Form.Label className="invisible">
-            Enter the description of the task (Optional):
-          </Form.Label>
-          <textarea
-            placeholder="Enter the description of the task."
-            {...register('description')}></textarea>
-        </Row>
-        <Row className="mb-3">
-          <Form.Label className="invisible">
-            Enter the deadline of the task:{' '}
-          </Form.Label>
-          <Input
-            type="date"
-            value={new Date().toISOString().split('T')[0]}
-            name="deadline"
-            required
-            register={register}
-          />
-        </Row>
-        <Row className="mb-3">
-          <Form.Label className="invisible">
-            Enter the importance of the task:{' '}
-          </Form.Label>
-          <Form.Select {...register('importance')}>
-            {Object.values(Importance).map((element) => (
-              <option key={element} value={element}>
-                {element}
-              </option>
-            ))}
-          </Form.Select>
-        </Row>
-        <Row className="mb-3 d-flex justify-content-center">
+        {/* <Row className="mb-3"> */}
+        <Form.Label hidden>Enter the title of the task:</Form.Label>
+        <Input
+          type="text"
+          placeholder="Enter the title of the task."
+          name="title"
+          required
+          register={register}
+        />
+        {/* </Row> */}
+        {/* <Row className="mb-3"> */}
+        <Form.Label hidden>
+          Enter the description of the task (Optional):
+        </Form.Label>
+        <textarea
+          placeholder="Enter the description of the task."
+          {...register('description')}></textarea>
+        {/* </Row> */}
+        {/* <Row className="mb-3"> */}
+        <Form.Label hidden>Enter the deadline of the task: </Form.Label>
+        <Input
+          type="date"
+          value={new Date().toISOString().split('T')[0]}
+          name="deadline"
+          required
+          register={register}
+        />
+        {/* // </Row> */}
+        {/* <Row className="mb-3"> */}
+        <Form.Label hidden>Enter the importance of the task: </Form.Label>
+        <Form.Select {...register('importance')}>
+          {Object.values(Importance).map((element) => (
+            <option key={element} value={element}>
+              {element}
+            </option>
+          ))}
+        </Form.Select>
+        {/* // </Row> */}
+        {/* <Row className="mb-3 d-flex justify-content-center"> */}
+        <div className="container-button">
           <Button
             type="submit"
             classname="col-6"
             value="Create"
-            variant="outline-success"
+            variant="outline-light"
           />
-        </Row>
+        </div>
+        {/* </Row> */}
       </Form>
     </div>
   )

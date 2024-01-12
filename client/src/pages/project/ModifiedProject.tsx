@@ -30,67 +30,70 @@ function ModifiedProject() {
         className="col-xl-5 col-lg-6 col-md-7 col-sm-10 mt-5"
         noValidate
         onSubmit={handleSubmit(onSubmit)}>
-        <Row className="mb-3">
-          <Form.Label className="invisible">
-            Enter the new name of the project (optional):{' '}
-          </Form.Label>
-          <Input
-            type="text"
-            placeholder="Enter the new name of the project (optional)."
-            name="nameproject"
-            value={selectProjects?.nameproject}
-            register={register}
-          />
-        </Row>
-        <Row className="mb-3">
-          <Form.Label className="invisible">
-            Enter the new description of the project (optional):
-          </Form.Label>
-          <textarea
-            defaultValue={
-              selectProjects?.description
-                ? selectProjects?.description
-                : 'No description'
-            }
-            placeholder="Enter the new description of the project (optional)"
-            {...register('description')}></textarea>
-        </Row>
-        <Row className="mb-3">
-          <Form.Label className="invisible">
-            Enter the new Deadline of the project (optional):{' '}
-          </Form.Label>
-          <Input
-            type="date"
-            name="deadline"
-            register={register}
-            value={
-              selectProjects?.deadline
-                ? new Date(selectProjects.deadline).toISOString().split('T')[0]
-                : ''
-            }
-          />
-        </Row>
-        <Row className="mb-3">
-          <Form.Label className="invisible">
-            Enter the new importance of the project (optional):
-          </Form.Label>
-          <Form.Select
-            {...register('importance')}
-            defaultValue={selectProjects?.importance}>
-            {Object.values(Importance).map((element) => (
-              <option key={element} value={element}>
-                {element}
-              </option>
-            ))}
-          </Form.Select>
-        </Row>
-        <Row className="mb-3 d-flex justify-content-center">
+        {/* <Row className="mb-3"> */}
+        <Form.Label hidden>
+          Enter the new name of the project (optional):{' '}
+        </Form.Label>
+        <Input
+          type="text"
+          placeholder="Enter the new name of the project (optional)."
+          name="nameproject"
+          value={selectProjects?.nameproject}
+          register={register}
+        />
+        {/* </Row> */}
+        {/* <Row className="mb-3"> */}
+        <Form.Label hidden>
+          Enter the new description of the project (optional):
+        </Form.Label>
+        <textarea
+          defaultValue={
+            selectProjects?.description
+              ? selectProjects?.description
+              : 'No description'
+          }
+          placeholder="Enter the new description of the project (optional)"
+          {...register('description')}></textarea>
+        {/* </Row> */}
+        {/* <Row className="mb-3"> */}
+        <Form.Label hidden>
+          Enter the new Deadline of the project (optional):{' '}
+        </Form.Label>
+        <Input
+          type="date"
+          name="deadline"
+          register={register}
+          value={
+            selectProjects?.deadline
+              ? new Date(selectProjects.deadline).toISOString().split('T')[0]
+              : ''
+          }
+        />
+        {/* // </Row> */}
+        {/* <Row className="mb-3"> */}
+        <Form.Label hidden>
+          Enter the new importance of the project (optional):
+        </Form.Label>
+        <Form.Select
+          {...register('importance')}
+          defaultValue={selectProjects?.importance}>
+          {Object.values(Importance).map((element) => (
+            <option key={element} value={element}>
+              {element}
+            </option>
+          ))}
+        </Form.Select>
+        {/* // </Row> */}
+        {/* <Row className="mb-3 d-flex justify-content-center"> */}
+        <div className="container-button">
           <Button
             type="submit"
             classname="col-6"
             value="Modified"
-            variant="outline-success"></Button>
-        </Row>
+            variant="outline-light"
+          />
+        </div>
+        {/* </Row> */}
       </Form>
     </div>
   )
