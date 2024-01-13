@@ -1,46 +1,48 @@
-import { SubmitHandler, useForm } from 'react-hook-form'
-import { ModifiedTask } from '../../types/task'
-import { useTask } from '../../context/task/useTask.Context'
-import { useNavigate } from 'react-router-dom'
-import { filteredData } from '../../libs/transformData'
-import Input from '../../component/Input'
-import { Importance, State } from '../../types/types.d'
-import { Button } from '../../component/Button'
-import { useError } from '../../context/error/useError.Context'
-import Form from 'react-bootstrap/Form'
-import Row from 'react-bootstrap/Row'
-import { useProject } from '../../context/project/useProject.Context'
+import { SubmitHandler, useForm } from "react-hook-form";
+import { ModifiedTask } from "../../types/task";
+import { useTask } from "../../context/task/useTask.Context";
+import { useNavigate } from "react-router-dom";
+import { filteredData } from "../../libs/transformData";
+import Input from "../../component/Input";
+import { Importance, State } from "../../types/types.d";
+import { Button } from "../../component/Button";
+import { useError } from "../../context/error/useError.Context";
+import Form from "react-bootstrap/Form";
+import { useProject } from "../../context/project/useProject.Context";
 
 function ModifiedTask() {
-  const { register, handleSubmit } = useForm<ModifiedTask>()
-  const { selectTask, modifiedTask, isFinished } = useTask()
-  const { modifiedUpdateProject } = useProject()
-  const navigate = useNavigate()
-  const { setError } = useError()
-  if (selectTask) navigate('/project')
+  const { register, handleSubmit } = useForm<ModifiedTask>();
+  const { selectTask, modifiedTask, isFinished } = useTask();
+  const { modifiedUpdateProject } = useProject();
+  const navigate = useNavigate();
+  const { setError } = useError();
+
+  // if (selectTask) navigate("/project");
   const onSubmit: SubmitHandler<ModifiedTask> = async (data) => {
-    const cleanedData: ModifiedTask = filteredData(data)
+    const cleanedData: ModifiedTask = filteredData(data);
     try {
-      await modifiedTask(cleanedData)
+      await modifiedTask(cleanedData);
+
       if (cleanedData.state === State.Finished) {
         if (selectTask?.project)
           isFinished(selectTask.project) &&
-            modifiedUpdateProject(selectTask.project, State.Finished)
+            modifiedUpdateProject(selectTask.project, State.Finished);
       }
 
       if (cleanedData.state === State.Developing) {
-        modifiedUpdateProject(selectTask?.project, State.Developing)
+        modifiedUpdateProject(selectTask?.project, State.Developing);
       }
-      navigate('/project')
+      navigate("/project");
     } catch (error: unknown) {
-      setError(error)
+      setError(error);
     }
-  }
+  };
   return (
     <div className="w-100 d-flex justify-content-center">
       <Form
         className="col-xl-5 col-lg-6 col-md-7 col-sm-10 mt-5"
-        onSubmit={handleSubmit(onSubmit)}>
+        onSubmit={handleSubmit(onSubmit)}
+      >
         {/* <Row className="mb-3"> */}
         <Form.Label hidden>
           Enter the new title of the task (Opcional):
@@ -60,7 +62,8 @@ function ModifiedTask() {
         <textarea
           defaultValue={selectTask?.description}
           placeholder="Enter the new description of the taks (optional)"
-          {...register('description')}></textarea>
+          {...register("description")}
+        ></textarea>
         {/* </Row> */}
         {/* <Row className="mb-3"> */}
         <Form.Label hidden>
@@ -72,8 +75,8 @@ function ModifiedTask() {
           register={register}
           value={
             selectTask?.deadline
-              ? new Date(selectTask.deadline).toISOString().split('T')[0]
-              : ''
+              ? new Date(selectTask.deadline).toISOString().split("T")[0]
+              : ""
           }
         />
         {/* // </Row> */}
@@ -82,8 +85,9 @@ function ModifiedTask() {
           Enter the new importance of the task (optional):
         </Form.Label>
         <Form.Select
-          {...register('importance')}
-          defaultValue={selectTask?.Importance}>
+          {...register("importance")}
+          defaultValue={selectTask?.Importance}
+        >
           {Object.values(Importance).map((element) => (
             <option key={element} value={element}>
               {element}
@@ -95,7 +99,7 @@ function ModifiedTask() {
         <Form.Label hidden>
           Enter the new state of the task (optional):
         </Form.Label>
-        <Form.Select {...register('state')} defaultValue={selectTask?.state}>
+        <Form.Select {...register("state")} defaultValue={selectTask?.state}>
           {Object.values(State).map((element) => (
             <option key={element} value={element}>
               {element}
@@ -115,7 +119,7 @@ function ModifiedTask() {
         {/* </Row> */}
       </Form>
     </div>
-  )
+  );
 }
 
-export default ModifiedTask
+export default ModifiedTask;

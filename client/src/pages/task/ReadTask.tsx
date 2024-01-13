@@ -1,26 +1,27 @@
-import { useProject } from '../../context/project/useProject.Context'
-import { useTask } from '../../context/task/useTask.Context'
-import { CompleteViewProject } from '../../types/project'
-import { CompleteViewTask } from '../../types/task'
-import ButtonModifiedTask from './Buttons/ButtonModifiedTask'
-import ButtonDeleteTask from './Buttons/ButtonsDeleteTask'
+import { Dropdown } from "react-bootstrap";
+import { useProject } from "../../context/project/useProject.Context";
+import { useTask } from "../../context/task/useTask.Context";
+import { CompleteViewProject } from "../../types/project";
+import { CompleteViewTask } from "../../types/task";
+import ButtonModifiedTask from "./Buttons/ButtonModifiedTask";
+import ButtonDeleteTask from "./Buttons/ButtonsDeleteTask";
 
 const ReadTasks: React.FC<{ id: string }> = ({ id }) => {
-  const { projects } = useProject()
+  const { projects } = useProject();
 
-  const { tasks, firstCharge, getTasks } = useTask()
+  const { tasks, firstCharge, getTasks } = useTask();
 
   if (firstCharge) {
-    getTasks()
+    getTasks();
   }
 
   const selectProjects: CompleteViewProject | undefined = projects?.find(
     (element) => element._id === id
-  )
+  );
 
   const tasksRead: CompleteViewTask[] | undefined = tasks?.filter(
     (element) => element.project === selectProjects?._id
-  )
+  );
 
   return (
     <>
@@ -30,28 +31,31 @@ const ReadTasks: React.FC<{ id: string }> = ({ id }) => {
           {tasksRead.map((element) => (
             <div
               key={element._id}
-              className="item-task w-100 d-flex column justify-content-between">
+              className="item-task w-100 d-flex column justify-content-between"
+            >
               <div className="row d-flex flex-wrap col-5">
                 <p>
                   <strong>Title: </strong>
                   <span>{element.title}</span>
                 </p>
                 <p>
-                  <strong>Description: </strong>
                   <span>
-                    {element.description
-                      ? element.description
-                      : 'Sin descripcion'}
+                    <strong>Deadline: </strong>
+                    {new Date(element.deadline).toLocaleDateString("en-US")}
                   </span>
                 </p>
               </div>
               <div className="row d-flex flex-wrap col-3">
                 <p>
+                  <strong>Description: </strong>
                   <span>
-                    <strong>Deadline: </strong>
-                    {new Date(element.deadline).toLocaleDateString('en-US')}
+                    {element.description
+                      ? element.description
+                      : "Sin descripcion"}
                   </span>
                 </p>
+              </div>
+              <div className="col-3">
                 <p>
                   <span>
                     <strong>Importance: </strong>
@@ -62,15 +66,18 @@ const ReadTasks: React.FC<{ id: string }> = ({ id }) => {
                   <strong>State: </strong>
                   <span>{element.state}</span>
                 </p>
-              </div>
-              <div className="col-3">
-                <div className="dropdown">
-                  <p className="custom-op"></p>
-                  <div className="dropdown-content">
+                <Dropdown data-bs-theme="dark">
+                  <Dropdown.Toggle
+                    id="dropdown-button-dark-example1"
+                    variant="secondary"
+                  >
+                    Options
+                  </Dropdown.Toggle>
+                  <Dropdown.Menu>
                     <ButtonModifiedTask id={element._id} />
                     <ButtonDeleteTask id={element._id} />
-                  </div>
-                </div>
+                  </Dropdown.Menu>
+                </Dropdown>
               </div>
             </div>
           ))}
@@ -79,7 +86,7 @@ const ReadTasks: React.FC<{ id: string }> = ({ id }) => {
         <h1>Not found task</h1>
       )}
     </>
-  )
-}
+  );
+};
 
-export default ReadTasks
+export default ReadTasks;

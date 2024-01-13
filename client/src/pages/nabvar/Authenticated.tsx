@@ -1,25 +1,21 @@
-import { useNavigate } from 'react-router-dom'
-import { Button } from '../../component/Button'
-import Panel from '../panel/Panel'
-import Profile from '../panel/Profile'
+import { Link, useNavigate } from "react-router-dom";
+import Panel from "../panel/Panel";
+import Profile from "../panel/Profile";
 
 function Authenticated() {
-  const navigate = useNavigate()
-  const handlerClick = (path: string) => {
-    navigate(path)
-  }
   return (
     <>
       <Panel />
-      <Button
+      <Link to={"/project"}> project</Link>
+      {/* <Button
         type="submit"
         variant="outline-success"
         handler={() => handlerClick('/project')}
         value="project"
-      />
+      /> */}
       <Profile />
     </>
-  )
+  );
 }
 
-export default Authenticated
+export default Authenticated;

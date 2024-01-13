@@ -1,26 +1,26 @@
-import { useNavigate } from 'react-router-dom'
-import { useProject } from '../../../context/project/useProject.Context'
-import { Button } from '../../../component/Button'
+import { useNavigate } from "react-router-dom";
+import { useProject } from "../../../context/project/useProject.Context";
+import { Button } from "../../../component/Button";
 
 type props = {
-  id: string
-}
+  id: string;
+};
 
 function ButtonAddTasksProject(prop: props) {
-  const navigate = useNavigate()
-  const { setSelectProject } = useProject()
+  const navigate = useNavigate();
+  const { setSelectProject } = useProject();
   const handlerClick = (index: string) => {
-    setSelectProject(index)
-    navigate('/project/addtask')
-  }
+    setSelectProject(index);
+    navigate("/project/addtask");
+  };
   return (
     <Button
       type="submit"
       value="Add task"
       classname="w-100"
-      variant="outline-success"
+      variant="outline-light"
       handler={() => handlerClick(prop.id)}
     />
-  )
+  );
 }
-export default ButtonAddTasksProject
+export default ButtonAddTasksProject;

@@ -1,0 +1,20 @@
+.carrusel {
+  display: flex;
+  width: 700px;
+  height: 200px;
+  padding-top: 10px;
+  margin-top: 20px;
+}
+.carrusel img {
+  width: 0px;
+  flex-grow: 1;
+  object-fit: cover;
+  opacity: 0.8;
+  transition: 0.5s ease;
+}
+.carrusel img:hover {
+  cursor: crosshair;
+  width: 300px;
+  opacity: 1;
+  filter: contrast(120%);
+}

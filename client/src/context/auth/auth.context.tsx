@@ -1,89 +1,90 @@
-import React, { createContext, useState, useEffect } from 'react'
+import React, { createContext, useState, useEffect } from "react";
 import {
   GetLogOutRequest,
   loginRequest,
   registerRequest,
-  verifyTokenRequest
-} from '../../api/auth.request'
+  verifyTokenRequest,
+} from "../../api/auth.request";
 // import axios from 'axios'
-import Cookies from 'js-cookie'
-import { ProviderProps } from '../../types/types.d'
-import { useError } from '../error/useError.Context'
+import Cookies from "js-cookie";
+import { ProviderProps } from "../../types/types.d";
+import { useError } from "../error/useError.Context";
 
 export const AuthContext = createContext<AuthContextProps | undefined>(
   undefined
-)
+);
 
 export const AuthProvider: React.FC<ProviderProps> = ({ children }) => {
-  const [user, setUser] = useState<User | null>(null)
+  const [user, setUser] = useState<User | null>(null);
 
-  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 
-  const { setError } = useError()
+  const { setError } = useError();
 
   useEffect(() => {
-    setIsAuthenticated(user !== null)
-  }, [user])
+    setIsAuthenticated(user !== null);
+  }, [user]);
 
   useEffect(() => {
     const checkToken = async () => {
-      const cookies = Cookies.get()
+      const cookies = Cookies.get();
       if (cookies.token) {
         try {
-          const res = await verifyTokenRequest()
-          if (!res.data) setIsAuthenticated(false)
-          setIsAuthenticated(true)
+          const res = await verifyTokenRequest();
+          if (!res.data) setIsAuthenticated(false);
+          setIsAuthenticated(true);
           setUser({
             id: res.data._id,
             username: res.data.username,
-            email: res.data.email
-          })
+            email: res.data.email,
+          });
         } catch (error) {
-          setIsAuthenticated(false)
-          setUser(null)
+          setIsAuthenticated(false);
+          setUser(null);
         }
       }
-    }
-    checkToken()
-  }, [])
+    };
+    checkToken();
+  }, []);
 
   const signup = async (value: object) => {
     try {
-      const res = await registerRequest(value)
-      const { _id, username, email } = res.data.user
-      const userData: User = { id: _id, username: username, email: email }
-      setUser(userData)
+      const res = await registerRequest(value);
+      const { _id, username, email } = res.data.user;
+      const userData: User = { id: _id, username: username, email: email };
+      setUser(userData);
     } catch (error: unknown) {
-      setError(error)
+      setError(error);
     }
-  }
+  };
 
   const sigIn = async (value: object) => {
     try {
-      const res = await loginRequest(value)
-      const { _id, username, email } = res.data.user
-      const userData: User = { id: _id, username: username, email: email }
-      setUser(userData)
+      const res = await loginRequest(value);
+      const { _id, username, email } = res.data.user;
+      const userData: User = { id: _id, username: username, email: email };
+      setUser(userData);
     } catch (error: unknown) {
-      setError(error)
+      setError(error);
     }
-  }
+  };
 
   const logOut = async () => {
     try {
-      await GetLogOutRequest()
-      Cookies.remove('token')
-      setIsAuthenticated(!isAuthenticated)
-      setUser(null)
+      await GetLogOutRequest();
+      Cookies.remove("token");
+      setIsAuthenticated(false);
+      setUser(null);
     } catch (error: unknown) {
-      setError(error)
+      setError(error);
     }
-  }
+  };
 
   return (
     <AuthContext.Provider
-      value={{ signup, sigIn, logOut, user, isAuthenticated }}>
+      value={{ signup, sigIn, logOut, user, isAuthenticated }}
+    >
       {children}
     </AuthContext.Provider>
-  )
-}
+  );
+};

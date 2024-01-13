@@ -50,5 +50,4 @@ interface ProjectContextProps {
   selectProjects: CompleteViewProject | null
   projects: CompleteViewProject[] | null
   firstCharge: boolean
-  // error: string[] | null
 }

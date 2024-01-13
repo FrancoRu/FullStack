@@ -1,23 +1,20 @@
-import { useProject } from '../../context/project/useProject.Context'
-import ButtonModifiedProject from './Buttons/ButtonModifiedProject'
-import ButtonDeleteProject from './Buttons/ButtonDeleteProject'
-import ButtonAddTasksProject from './Buttons/ButtonAddTaskProject'
-import { Button } from '../../component/Button'
-import { useNavigate } from 'react-router-dom'
-import Accordion from 'react-bootstrap/Accordion'
-import ReadTasks from '../task/ReadTask'
+import { useProject } from "../../context/project/useProject.Context";
+import ButtonModifiedProject from "./Buttons/ButtonModifiedProject";
+import ButtonDeleteProject from "./Buttons/ButtonDeleteProject";
+import ButtonAddTasksProject from "./Buttons/ButtonAddTaskProject";
+import { Button } from "../../component/Button";
+import { useNavigate } from "react-router-dom";
+import Accordion from "react-bootstrap/Accordion";
+import ReadTasks from "../task/ReadTask";
+// import { useEffect } from "react";
 
 const ReadProjects: React.FC = () => {
-  const { projects, firstCharge, getProjects } = useProject()
-  const navigate = useNavigate()
-
-  if (firstCharge) {
-    getProjects()
-  }
+  const { projects } = useProject();
+  const navigate = useNavigate();
 
   const handlerClick = () => {
-    navigate('/project/add')
-  }
+    navigate("/project/add");
+  };
 
   return (
     <>
@@ -25,16 +22,17 @@ const ReadProjects: React.FC = () => {
         <Button
           type="submit"
           value="Add Project"
-          variant="outline-success"
+          variant="outline-light"
           classname="col-xl-2 co-lg-3 col-md-5 col-sm-7 mt-5"
           handler={() => handlerClick()}
         />
       </div>
+
       {projects && (
         <div className="mt-5 ">
-          <Accordion>
-            {projects.map((element, index) => (
-              <Accordion.Item key={index} eventKey={index.toString()}>
+          {projects.map((element, index) => (
+            <Accordion key={element._id}>
+              <Accordion.Item key={element._id} eventKey={index.toString()}>
                 <Accordion.Header>
                   <div className="item-project w-100 d-flex column justify-content-between">
                     <div className=" row d-flex flex-wrap col-5">
@@ -47,7 +45,7 @@ const ReadProjects: React.FC = () => {
                         <span>
                           {element.description
                             ? element.description
-                            : 'Sin descripcion'}
+                            : "Sin descripcion"}
                         </span>
                       </p>
                     </div>
@@ -56,7 +54,7 @@ const ReadProjects: React.FC = () => {
                         <strong>Deadline: </strong>
                         <span>
                           {new Date(element.deadline).toLocaleDateString(
-                            'en-US'
+                            "en-US"
                           )}
                         </span>
                       </p>
@@ -88,12 +86,12 @@ const ReadProjects: React.FC = () => {
                   <ReadTasks id={element._id} />
                 </Accordion.Body>
               </Accordion.Item>
-            ))}
-          </Accordion>
+            </Accordion>
+          ))}
         </div>
       )}
     </>
-  )
-}
+  );
+};
 
-export default ReadProjects
+export default ReadProjects;

@@ -1,26 +1,30 @@
-import { ArcElement, Chart as ChartJS, Legend, Tooltip } from 'chart.js/auto'
-import Card from 'react-bootstrap/Card'
-import Offcanvas from 'react-bootstrap/Offcanvas'
-import { useState } from 'react'
-import { Button } from '../../component/Button'
-import { useAuth } from '../../context/auth/useAuth.Context'
+import { ArcElement, Chart as ChartJS, Legend, Tooltip } from "chart.js/auto";
+import Card from "react-bootstrap/Card";
+import Offcanvas from "react-bootstrap/Offcanvas";
+import { useState } from "react";
+// import { Button } from "../../component/Button";
+import { useAuth } from "../../context/auth/useAuth.Context";
+import { Link } from "react-router-dom";
 
 function Profile() {
-  ChartJS.register(ArcElement, Tooltip, Legend)
-  const { user } = useAuth()
-  const [show, setShow] = useState(false)
+  ChartJS.register(ArcElement, Tooltip, Legend);
+  const { user } = useAuth();
+  const [show, setShow] = useState(false);
 
-  const handleClose = () => setShow(false)
-  const handleShow = () => setShow(true)
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   return (
     <>
-      <Button
+      {/* <Button
         type="submit"
         variant="outline-success"
         handler={handleShow}
         value="Profile"
-      />
+      /> */}
+      <Link to={"/project"} onClick={handleShow}>
+        profile
+      </Link>
       <Offcanvas show={show} placement="end" onHide={handleClose}>
         <Offcanvas.Header closeButton>
           <Offcanvas.Title>Profile</Offcanvas.Title>
@@ -38,7 +42,7 @@ function Profile() {
         </Offcanvas.Body>
       </Offcanvas>
     </>
-  )
+  );
 }
 
-export default Profile
+export default Profile;

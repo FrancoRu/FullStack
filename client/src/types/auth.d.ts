@@ -10,5 +10,4 @@ interface AuthContextProps {
   logOut: () => Promise<void>
   user: User | null
   isAuthenticated: boolean
-  // errors: string[] | null
 }

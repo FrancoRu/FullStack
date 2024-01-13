@@ -1,105 +1,106 @@
-import React, { createContext, useState } from 'react'
+import React, { createContext, useState } from "react";
 import {
   CompleteViewTask,
   CreateTask,
   ModifiedTask,
-  TaskContextProps
-} from '../../types/task'
+  TaskContextProps,
+} from "../../types/task";
 import {
   DeleteTaskRequest,
   GetTasksRequest,
   PatchTasksRequest,
-  PostTaskRequest
-} from '../../api/task.request'
-import { useError } from '../error/useError.Context'
-import { ProviderProps, State } from '../../types/types.d'
+  PostTaskRequest,
+} from "../../api/task.request";
+import { useError } from "../error/useError.Context";
+import { ProviderProps, State } from "../../types/types.d";
 
 export const TaskContext = createContext<TaskContextProps | undefined>(
   undefined
-)
+);
 
 export const TaskProvider: React.FC<ProviderProps> = ({ children }) => {
-  const [tasks, setTasks] = useState<CompleteViewTask[] | null>(null)
-  const [selectTask, setSelectTask] = useState<CompleteViewTask | null>(null)
-  const [firstCharge, setFirstCharge] = useState<boolean>(true)
-  const { setError } = useError()
+  const [tasks, setTasks] = useState<CompleteViewTask[] | null>(null);
+  const [selectTask, setSelectTask] = useState<CompleteViewTask | null>(null);
+  const [firstCharge, setFirstCharge] = useState<boolean>(true);
+  const { setError, setMessage } = useError();
   const setSelectTasks = (index: string) => {
     const task: CompleteViewTask | undefined = tasks?.find(
       (element) => element._id === index
-    )
-    setSelectTask(task ?? null)
-  }
+    );
+    setSelectTask(task ?? null);
+  };
 
   const removeSelectTask = async (index: string) => {
     try {
-      await DeleteTaskRequest(index)
+      const res = await DeleteTaskRequest(index);
       const filteresTasks: CompleteViewTask[] | undefined = tasks?.filter(
         (element) => element._id !== index
-      )
-      setTasks(filteresTasks ?? null)
+      );
+      setTasks(filteresTasks ?? null);
+      setMessage(res.status, ["task successfully deleted"]);
     } catch (error: unknown) {
-      setError(error)
+      setError(error);
     }
-  }
+  };
 
   const logout = () => {
-    setTasks(null)
-    setFirstCharge(true)
-    setSelectTask(null)
-  }
+    setTasks(null);
+    setFirstCharge(true);
+    setSelectTask(null);
+  };
 
   const addTask = async (value: CreateTask) => {
     try {
-      const res = await PostTaskRequest(value)
-      setTasks((prevTask) => [res.data.data, ...(prevTask || [])])
+      const res = await PostTaskRequest(value);
+      setTasks((prevTask) => [res.data.data, ...(prevTask || [])]);
+      setMessage(res.status, res.data.message);
     } catch (error: unknown) {
-      // console.error('Error: ', error)
-      setError(error)
+      setError(error);
     }
-  }
+  };
 
   const getTasks = async () => {
     try {
-      const res = await GetTasksRequest()
-      setTasks(res.data.data)
-      setFirstCharge(!firstCharge)
+      const res = await GetTasksRequest();
+      setTasks(res.data.data);
+      setFirstCharge(!firstCharge);
     } catch (error: unknown) {
-      setError(error)
+      setError(error);
     }
-  }
+  };
 
   const isFinished = (index: string): boolean => {
     const allTasksFinished = tasks
       ?.filter((task) => task._id === index)
-      .every((element) => element.state === State.Finished)
+      .every((element) => element.state === State.Finished);
 
-    return allTasksFinished ?? false
-  }
+    return allTasksFinished ?? false;
+  };
 
   const modifiedTask = async (value: ModifiedTask) => {
     try {
-      if (!selectTask) throw new Error('A task must be selected first')
+      if (!selectTask) throw new Error("A task must be selected first");
       const modifiedTaskValues: CompleteViewTask = {
         ...selectTask,
-        ...value
-      }
+        ...value,
+      };
       const res = await PatchTasksRequest(
         modifiedTaskValues._id,
         modifiedTaskValues
-      )
+      );
       const newStateTasks: CompleteViewTask[] | undefined = tasks?.map(
         (element) => {
           if (element._id === modifiedTaskValues._id) {
-            return { ...res.data.data }
+            return { ...res.data.data };
           }
-          return element
+          return element;
         }
-      )
-      setTasks(newStateTasks ?? null)
+      );
+      setTasks(newStateTasks ?? null);
     } catch (error: unknown) {
-      setError(error)
+      setError(error);
     }
-  }
+  };
   return (
     <TaskContext.Provider
       value={{
@@ -112,9 +113,10 @@ export const TaskProvider: React.FC<ProviderProps> = ({ children }) => {
         getTasks,
         modifiedTask,
         isFinished,
-        logout
-      }}>
+        logout,
+      }}
+    >
       {children}
     </TaskContext.Provider>
-  )
-}
+  );
+};

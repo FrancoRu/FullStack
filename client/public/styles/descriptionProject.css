@@ -1,9 +1,4 @@
-/* .contain-text {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  width: 100%;
-} */
+
 
 .text-head,
 .text-body {
@@ -31,7 +26,7 @@ li {
   line-height: 20px; /* 111.111% */
 }
 
-button,
+/* button,
 input {
   border: 1px solid black;
-}
+} */

@@ -1,12 +1,9 @@
-@import url('../public/styles/form/form.css');
-@import url('../public/styles/read/boardRead.css');
-
+@import url("../public/styles/form/form.css");
+@import url("../public/styles/read/boardRead.css");
+@import url("../public/styles/navbar/navbar.css");
+@import url("../public/styles/carrusel/carrusel.css");
 * {
-  color: #ffffff !important;
-}
-
-nav:hover {
-  backdrop-filter: blur(30px);
+  color: #ffffff;
 }
 
 input::placeholder,
@@ -19,16 +16,6 @@ label {
 
 option {
   color: black !important;
-}
-
-.navbar-nav button {
-  width: 25%;
-}
-
-.navbar-nav {
-  width: 100%;
-  display: flex !important;
-  justify-content: space-around !important;
 }
 
 #root {
@@ -54,10 +41,11 @@ option {
 li {
   list-style: none;
   text-align: center;
+  font-weight: bold;
 }
 .text-body {
   color: white !important;
-  font-weight: lighter;
+  font-weight: normal;
   text-align: left;
 }
 .container-list {
@@ -71,6 +59,12 @@ li {
 }
 
 footer {
+  position: fixed;
+  box-shadow: 0px -5px 10px -5px #fdfbf8;
+  background-color: black;
+  padding: 10px;
+  /* margin: 10px 0px; */
+  bottom: 0;
   width: 100%;
   margin-top: 20px;
   display: flex;
@@ -82,10 +76,11 @@ footer div {
   flex-direction: row;
   justify-content: center;
   gap: 10px;
-  backdrop-filter: blur(10px);
 }
+
 .container-img a img {
   width: 50px;
+  margin-left: 35px;
 }
 
 .text-access {
@@ -105,4 +100,9 @@ span {
 button:hover {
   color: black !important;
   font-weight: bold !important;
+}
+
+span {
+  color: white !important;
+  font-weight: bold;
 }
