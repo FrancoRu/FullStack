@@ -1,0 +1,1 @@
+{"version":3,"file":"task.schema.d.ts","sourceRoot":"","sources":["../../src/schemas/task.schema.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,CAAC,EAAE,MAAM,KAAK,CAAA;AACvB,OAAO,EAAE,UAAU,EAAE,KAAK,EAAE,MAAM,gBAAgB,CAAA;AAElD,eAAO,MAAM,gBAAgB;;;;;;;;;;;;;;;;;;EAgC3B,CAAA;AAEF,eAAO,MAAM,cAAc;;;;;;EAEzB,CAAA;AAEF,eAAO,MAAM,gBAAgB;;;;;;;;;;;;;;;;;;;;;EA8B3B,CAAA"}
