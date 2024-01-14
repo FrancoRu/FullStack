@@ -30,6 +30,13 @@ export const TaskProvider: React.FC<ProviderProps> = ({ children }) => {
     setSelectTask(task ?? null);
   };
 
+  const removeTaskByProjectId = (index: string) => {
+    const newTask: CompleteViewTask[] | undefined = tasks?.filter(
+      (element) => element.project !== index
+    );
+    setTasks(newTask ?? null);
+  };
+
   const removeSelectTask = async (index: string) => {
     try {
       const res = await DeleteTaskRequest(index);
@@ -112,6 +119,7 @@ export const TaskProvider: React.FC<ProviderProps> = ({ children }) => {
         addTask,
         getTasks,
         modifiedTask,
+        removeTaskByProjectId,
         isFinished,
         logout,
       }}

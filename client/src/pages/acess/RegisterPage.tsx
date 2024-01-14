@@ -1,39 +1,38 @@
-import { useForm, SubmitHandler } from 'react-hook-form'
-import Input from '../../component/Input' // Ajusta la ruta según tu estructura de archivos
-import { Button } from '../../component/Button'
-import { useNavigate, Link } from 'react-router-dom'
-import { useAuth } from '../../context/auth/useAuth.Context'
-import { useEffect } from 'react'
-import { useError } from '../../context/error/useError.Context'
-import Form from 'react-bootstrap/Form'
-import Row from 'react-bootstrap/Row'
-import Alert from 'react-bootstrap/Alert'
+import { useForm, SubmitHandler } from "react-hook-form";
+import Input from "../../component/Input"; // Ajusta la ruta según tu estructura de archivos
+import { Button } from "../../component/Button";
+import { useNavigate, Link } from "react-router-dom";
+import { useAuth } from "../../context/auth/useAuth.Context";
+import { useEffect } from "react";
+import { useError } from "../../context/error/useError.Context";
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 interface FormData {
-  username: string
-  email: string
-  password: string
-  confirmPassword: string
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
 }
 
 const RegisterPage: React.FC = () => {
-  const { errors: RegisterError } = useError()
+  const { errors: RegisterError } = useError();
   const {
     register,
     handleSubmit,
-    formState: { errors }
-  } = useForm<FormData>()
-  const { signup, isAuthenticated } = useAuth()
-  const navigate = useNavigate()
+    formState: { errors },
+  } = useForm<FormData>();
+  const { signup, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/project')
+      navigate("/project");
     }
-  }, [isAuthenticated, navigate])
+  }, [isAuthenticated, navigate]);
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    signup(data)
-  }
+    signup(data);
+  };
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
@@ -130,7 +129,7 @@ const RegisterPage: React.FC = () => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default RegisterPage
+export default RegisterPage;

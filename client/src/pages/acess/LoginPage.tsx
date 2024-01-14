@@ -1,37 +1,36 @@
-import { useForm, SubmitHandler } from 'react-hook-form'
-import Input from '../../component/Input'
-import { Button } from '../../component/Button'
-import { Link, useNavigate } from 'react-router-dom'
-import { useAuth } from '../../context/auth/useAuth.Context'
-import { useEffect } from 'react'
-import { useError } from '../../context/error/useError.Context'
-import Form from 'react-bootstrap/Form'
-import Row from 'react-bootstrap/Row'
-import Alert from 'react-bootstrap/Alert'
+import { useForm, SubmitHandler } from "react-hook-form";
+import Input from "../../component/Input";
+import { Button } from "../../component/Button";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../context/auth/useAuth.Context";
+import { useEffect } from "react";
+import { useError } from "../../context/error/useError.Context";
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 
 interface FormData {
-  email: string
-  password: string
+  email: string;
+  password: string;
 }
 
 const LoginPage: React.FC = () => {
-  const { errors: LoginError } = useError()
+  const { errors: LoginError } = useError();
   const {
     register,
     handleSubmit,
-    formState: { errors }
-  } = useForm<FormData>()
-  const { sigIn, isAuthenticated } = useAuth()
-  const navigate = useNavigate()
+    formState: { errors },
+  } = useForm<FormData>();
+  const { sigIn, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
   useEffect(() => {
     if (isAuthenticated) {
-      navigate('/project')
+      navigate("/project");
     }
-  }, [isAuthenticated, navigate])
+  }, [isAuthenticated, navigate]);
 
   const onSubmit: SubmitHandler<FormData> = async (data) => {
-    sigIn(data)
-  }
+    sigIn(data);
+  };
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
       <section className="col-xl-4 col-lg-6 col-md-8 col-sm-10">
@@ -86,7 +85,7 @@ const LoginPage: React.FC = () => {
         </div>
       </section>
     </div>
-  )
-}
+  );
+};
 
-export default LoginPage
+export default LoginPage;

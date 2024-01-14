@@ -106,3 +106,13 @@ span {
   color: white !important;
   font-weight: bold;
 }
+
+.dropdown-toggle {
+  background-color: white;
+  color: black;
+}
+
+.dropdown-toggle:hover {
+  background-color: white;
+  font-weight: bold;
+}

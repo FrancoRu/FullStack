@@ -1,15 +1,18 @@
-import { useProject } from '../../../context/project/useProject.Context'
-import { Button } from '../../../component/Button'
+import { useProject } from "../../../context/project/useProject.Context";
+import { Button } from "../../../component/Button";
+import { useTask } from "../../../context/task/useTask.Context";
 
 type props = {
-  id: string
-}
+  id: string;
+};
 
 function ButtonDeleteProject(prop: props) {
-  const { removeSelectProject } = useProject()
+  const { removeSelectProject } = useProject();
+  const { removeTaskByProjectId } = useTask();
   const handlerClick = (index: string) => {
-    removeSelectProject(index)
-  }
+    removeSelectProject(index);
+    removeTaskByProjectId(index);
+  };
   return (
     <Button
       type="submit"
@@ -18,6 +21,6 @@ function ButtonDeleteProject(prop: props) {
       variant="outline-danger"
       handler={() => handlerClick(prop.id)}
     />
-  )
+  );
 }
-export default ButtonDeleteProject
+export default ButtonDeleteProject;
