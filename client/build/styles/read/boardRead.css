@@ -1,0 +1,77 @@
+.accordion-item,
+.offcanvas,
+.text {
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 1em;
+  box-shadow: 0px 0px 14px 8px rgba(234, 251, 250, 0.75);
+  -webkit-box-shadow: 0px 0px 14px 8px rgba(234, 251, 250, 0.75);
+  -moz-box-shadow: 0px 0px 14px 8px rgba(234, 251, 250, 0.75);
+}
+
+
+
+.offcanvas,
+.offcanvas-body,
+.card,
+.accordion,
+.accordion-item,
+.accordion-button,
+.accordion-header,
+.accordion-collapse {
+  background-color: transparent !important;
+  margin: 10px;
+  border: none;
+}
+
+.accordion{
+  margin: 20px 0px !important;
+}
+
+.offcanvas-body {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: space-around;
+}
+
+.card {
+  width: 100%;
+  height: 50%;
+}
+
+.item-task {
+  border-bottom: 1px solid white;
+  padding-bottom: 10px;
+  margin: 10px 0px;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown:hover .dropdown-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+@media (max-width: 800px) {
+  .item-project {
+    flex-direction: column !important;
+  }
+  .item-task {
+    flex-direction: column !important;
+  }
+  .row {
+    justify-content: left;
+    width: 100%;
+  }
+  p {
+    text-align: left !important;
+  }
+}
